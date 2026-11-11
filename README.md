@@ -122,6 +122,10 @@ An example from the K2 Plus these macros were developed on: after leveling, all 
 
 The `Center` line in the report is a quick hint: a large plus or minus value there means the bed is bowed, and turning the screws won't change it.
 
+## Two Z motors on the K2 Plus (z_tilt)
+
+The K2 Plus moves the bed with two Z motors, one on the left and one on the right, and `G29` runs `Z_TILT_ADJUST` to even them out. That can only fix left against right. Front against back, and a twisted bed where one corner is higher than the rest, can only be fixed with the screws. The two work together: level the screws first, then `SCREWS_TILT_FINISH` runs `G29`, which redoes `Z_TILT_ADJUST` and the bed mesh on top of that.
+
 ## Notes
 
 - **Firmware updates** can remove `screws_tilt.cfg`, the include line in `printer.cfg`, or both. If the two commands are gone, install again. If only the file is gone, Klipper doesn't start and the screen shows error XS3002: upload the file again, or remove the `[include screws_tilt.cfg]` line.
